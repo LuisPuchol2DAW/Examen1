@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private View background, sunShape, bottomBar;
     private ImageView icon2;
-    private boolean isAnimationRunning = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
