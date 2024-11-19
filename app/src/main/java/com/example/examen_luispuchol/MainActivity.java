@@ -3,10 +3,11 @@ package com.example.examen_luispuchol;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -17,9 +18,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private View background;
-    private View sunShape;
-    private View bottomBar;
+    private View background, sunShape, bottomBar;
+    private ImageView icon2;
+    private boolean isAnimationRunning = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +30,26 @@ public class MainActivity extends AppCompatActivity {
         startStuff();
         startLayout();
 
-        startListener();
+        startListeners();
     }
 
-    private void startListener() {
+    private void startListeners() {
+        animationListener();
+
+        changeActivityListener();
+    }
+
+    private void changeActivityListener() {
+        icon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Activity2.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void animationListener() {
         background.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         background = findViewById(R.id.background);
         sunShape = findViewById(R.id.sun_shape);
         bottomBar = findViewById(R.id.bottom_bar);
+        icon2 = findViewById(R.id.icon_2);
     }
 
 }
